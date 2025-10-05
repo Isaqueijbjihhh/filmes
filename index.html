@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <title>Catálogo de Filmes</title>
+    <style>
+        .card:hover {
+            transform: scale(1.10);
+            transition: transform 0.5s;
+            box-shadow: 0 4px 8px rgb(0, 60, 255);
+            
+        }
+
+        .movie-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .card {
+            width: 150px;
+            border: none;
+            margin: 0;
+            background-color: rgb(255, 255, 255);
+                  border-radius: 10px;
+        }
+
+        .card-body {
+            padding: 0;
+                  border-radius: 10px;
+        }
+
+        .card img {
+            width: 150px;
+            height: 225px;
+            /* Proporção 2:3 */
+            object-fit: contain;
+            border-radius: 10px;
+        }
+
+        .topo {
+            margin-top: 100px;
+        }
+
+        nav.link {
+            color: black;
+            transition: color 0.5s ease;
+        }
+
+        .nav-link:hover {
+            color: #d5d5d5;
+            background-color: transparent;
+            text-decoration: none;
+        }
+
+        .nav-link.active {
+            background-color: #d5d5d5;
+            color: #212529;
+            border-radius: 10px;
+        }
+
+        .nav-link.active:hover {
+            background-color: #888888;
+        }
+
+        .nav-tabs {
+            border-bottom: none;
+
+        }
+
+        @media (max-width: 576px) {
+            .movie-grid {
+                padding: 10px;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            }
+
+            .card,
+            .card img {
+                width: 120px;
+                height: 180px;
+            }
+        }
+    </style>
+</head>
+
+<body style="background-color: rgb(0, 0, 0);">
+    <div class="container-fluid p-0">
+        <div class="row m-0">
+            <div class="col-12 p-0">
+                <nav class="navbar navbar-light bg-light navbar-expand-lg fixed-top">
+                    <a href="#" class="navbar-brand">
+                        <img src="imagem/logoloja.png" width="160" height="60" alt="Logo da Loja">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav1"
+                        aria-controls="nav1" aria-expanded="false" aria-label="Alternar navegação">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="nav1">
+                        <ul class="navbar-nav">
+                            <li class="nav-item active">
+                                <a href="#" class="nav-link active">Início</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">Gêneros</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">Contato</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" id="linkDrop" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                    Mais
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="linkDrop">
+                                    <a href="#meuelemento" class="dropdown-item">Lançamentos</a>
+                                    <a href="#" class="dropdown-item">Populares</a>
+                                    <a href="#" class="dropdown-item">Favoritos</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <div class="topo">
+            <div class="text-center mt-3">
+                <h2 style="color: yellow;">Filmes</h2>
+                <hr style="background-color: aliceblue; width: 10%; margin: 10px auto;">
+            </div>
+
+            <div class="movie-grid">
+                <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt4154796" class="text-decoration-none">
+                            <img src="vingadores.jpg" class="img-fluid" alt="Pôster de Vingadores: Ultimato">
+                        </a>
+                    </div>
+                </div>
+                <!-- Filme 2 -->
+                <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt3606752" class="text-decoration-none">
+                            <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/oEmdfjqQnAWe1t23WiiW0icFhGv.jpg"
+                                class="img-fluid" alt="Pôster do Filme 1">
+                        </a>
+                    </div>
+                </div>
+                <!-- Filme 3 -->
+                <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt4154756" class="text-decoration-none">
+                            <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/d6jUbQj4E4R5MJlFYfdzANEZbkL.jpg"
+                                class="img-fluid" alt="Pôster do Filme 2">
+                        </a>
+                    </div>
+                </div>
+                <!-- Filme 4 -->
+                <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt0848228" class="text-decoration-none">
+                            <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/u49fzmIJHkb1H4oGFTXtBGgaUS1.jpg"
+                                class="img-fluid" alt="Pôster do Filme 3">
+                        </a>
+                    </div>
+                </div>
+                <!-- Filme 5 -->
+                <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt8115900" class="text-decoration-none">
+                            <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/sYP7jrDDuqgfdq8HYc4kc8hs2k1.jpg"
+                                class="img-fluid" alt="Pôster do Filme 4">
+                        </a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt9362722" class="text-decoration-none">
+                            <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/4CwKj1fw33BXYzxvrpM3GlAhK4L.jpg"
+                                class="img-fluid" alt="Pôster do Filme 4">
+                        </a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt0120912" class="text-decoration-none">
+                            <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/1zoknLsDO3M3aYLzfs3wIvXDTfC.jpg"
+                                class="img-fluid" alt="Pôster do Filme 4">
+                        </a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt2283336" class="text-decoration-none">
+                            <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/mxopI5VyShCeAlJf3X4Q1T40Bub.jpg"
+                                class="img-fluid" alt="Pôster do Filme 4">
+                        </a>
+                    </div>
+                </div>
+                    <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt6718170" class="text-decoration-none">
+                            <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/ktU3MIeZtuEVRlMftgp0HMX2WR7.jpg"
+                                class="img-fluid" alt="Pôster do Filme 4">
+                        </a>
+                    </div>
+                </div>
+                 <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt1630029" class="text-decoration-none">
+                            <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/mbYQLLluS651W89jO7MOZcLSCUw.jpg"
+                                class="img-fluid" alt="Pôster do Filme 4">
+                        </a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt1825683" class="text-decoration-none">
+                            <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/ubXNpxL2ASSzY0f8Hxv08pOsV2L.jpg"
+                                class="img-fluid" alt="Pôster do Filme 4">
+                        </a>
+                    </div>
+                </div>
+                 <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt6791350" class="text-decoration-none">
+                            <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/4yycSPnchdNAZirGkmCYQwTd3cr.jpg"
+                                class="img-fluid" alt="Pôster do Filme 4">
+                        </a>
+                    </div>
+                </div>
+                
+                 <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt7126948" class="text-decoration-none">
+                            <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/qDA95ebiy3W3m8hTRB3xZNZVVBM.jpg"
+                                class="img-fluid" alt="Pôster do Filme 4">
+                        </a>
+                    </div>
+                </div>
+                 <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme= tt21692408" class="text-decoration-none">
+                            <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/aNK6MA5EApIo0UJE7ZWSYcZBJKy.jpg"
+                                class="img-fluid" alt="Pôster do Filme 4">
+                        </a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt0441773" class="text-decoration-none">
+                            <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/schmAu5DYdn2YPoBUdqpxF98N1z.jpg"
+                                class="img-fluid" alt="Pôster do Filme 4">
+                        </a>
+                    </div>
+                </div>
+                 <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt1424310" class="text-decoration-none">
+                            <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/mVCNoUc3d1XRAtxwhTdsTyhnnRO.jpg"
+                                class="img-fluid" alt="Pôster do Filme 4">
+                        </a>
+                    </div>
+                </div>
+               
+                
+            </div>
+          
+            </div>
+        
+
+
+
+
+
+
+
+
+
+
+            
+            <div class=" mt-3 text-center"   id='meuelemento'>
+                <h2 style="color: yellow;" >lançamentos</h2>
+                <hr style="background-color: aliceblue; width: 15%;">
+            </div>
+
+               <div class="movie-grid">
+            <div class="card">
+                <div class="card-body">
+                    <a href="Exemplo113.html?filme=tt10676052" class="text-decoration-none">
+                        <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/hlWOAWRKSno6UxaE0IXDFVvmzTf.jpgg"
+                            class="img-fluid" alt="Pôster do Filme 4">
+                    </a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <a href="Exemplo113.html?filme=tt30017619" class="text-decoration-none">
+                        <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/b0UoBkMSi6hflLxNFIFbJgskorU.jpg"
+                            class="img-fluid" alt="Pôster do Filme 4">
+                    </a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <a href="Exemplo113.html?filme=tt11655566" class="text-decoration-none">
+                        <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/bTnWeKXYU3Fal6rc8Bm4lBcEHSV.jpg"
+                            class="img-fluid" alt="Pôster do Filme 4">
+                    </a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <a href="Exemplo113.html?filme=tt4900148" class="text-decoration-none">
+                        <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/2H8k54MWPQtsxWkQhR2HVfT34ty.jpg"
+                            class="img-fluid" alt="Pôster do Filme 4">
+                    </a>
+                </div>
+            </div>
+           <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt14513804" class="text-decoration-none">
+                            <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/yWOtVhuwJ6f5j9ELD2k3wKELEln.jpg"
+                                class="img-fluid" alt="Pôster do Filme 4">
+                        </a>
+                    </div>
+                </div>
+            <div class="card">
+                <div class="card-body">
+                    <a href="Exemplo113.html?filme=tt26743210" class="text-decoration-none">
+                        <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/vdvEClt3J8sFWxyMo0Jm7JpouEo.jpg"
+                            class="img-fluid" alt="Pôster do Filme 4">
+                    </a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <a href="Exemplo113.html?filme=tt5950044" class="text-decoration-none">
+                        <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/xeZ8oG6W60fEPf9yCjERUXiHRBF.jpg"
+                            class="img-fluid" alt="Pôster do Filme 4">
+                    </a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <a href="Exemplo113.html?filme=tt3566834" class="text-decoration-none">
+                        <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/4VtkIaj76TpQNfhDHXQDdT9uBN5.jpg"
+                            class="img-fluid" alt="Pôster do Filme 4">
+                    </a>
+                </div>
+            </div>
+            <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt6208148" class="text-decoration-none">
+                            <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/mVCNoUc3d1XRAtxwhTdsTyhnnRO.jpg"
+                                class="img-fluid" alt="Pôster do Filme 4">
+                        </a>
+                    </div>
+                </div>
+            <div class="card">
+                <div class="card-body">
+                    <a href="Exemplo113.html?filme=tt10676052" class="text-decoration-none">
+                        <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/hlWOAWRKSno6UxaE0IXDFVvmzTf.jpgg"
+                            class="img-fluid" alt="Pôster do Filme 4">
+                    </a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <a href="Exemplo113.html?filme=tt10676052" class="text-decoration-none">
+                        <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/hlWOAWRKSno6UxaE0IXDFVvmzTf.jpgg"
+                            class="img-fluid" alt="Pôster do Filme 4">
+                    </a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <a href="Exemplo113.html?filme=tt10676052" class="text-decoration-none">
+                        <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/hlWOAWRKSno6UxaE0IXDFVvmzTf.jpgg"
+                            class="img-fluid" alt="Pôster do Filme 4">
+                    </a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <a href="Exemplo113.html?filme=tt10676052" class="text-decoration-none">
+                        <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/hlWOAWRKSno6UxaE0IXDFVvmzTf.jpgg"
+                            class="img-fluid" alt="Pôster do Filme 4">
+                    </a>
+                </div>
+            </div>
+</div>
+        </div>
+    </div>
+
+    <!-- Repetir para outros filmes com URLs válidas -->
+    </div>
+    </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+
+    </script>
+</body>
+
+</html>
