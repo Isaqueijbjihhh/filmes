@@ -5,6 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <title>Assistir Filme</title>
+    <style>
+         .video-container{
+            padding-bottom: 56.25%;
+            margin-top:100px;
+            height: 0;
+            overflow: hidden;
+            background: #111;
+            border-radius: 5px;
+        }
+        .toopo{
+          margin-top:100px;
+        }
+           .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+    </style>
 </head>
 <body style="background-color: black;">
     <div class="container-fluid">
@@ -45,17 +66,19 @@
         </div>
 
         <!-- Player do filme -->
-        <div class="card mt-3">
+        <div class="toopo">
+        <div class="card mt-3 video-container">
             <div class="card-body">
                 <iframe id="ve-iframe" 
                         src="" 
                         width="100%" 
-                        height="600" 
                         frameborder="0" 
                         allowfullscreen 
                         webkitallowfullscreen 
                         mozallowfullscreen>
+                  
                 </iframe>
+            </div>
             </div>
         </div>
     </div>
@@ -64,58 +87,32 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script type="text/javascript">
-        var gk_isXlsx = false;
-        var gk_xlsxFileLookup = {};
-        var gk_fileData = {};
-        function filledCell(cell) {
-          return cell !== '' && cell != null;
-        }
-        function loadFileData(filename) {
-        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
-            try {
-                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
-                var firstSheetName = workbook.SheetNames[0];
-                var worksheet = workbook.Sheets[firstSheetName];
+<script>
+    // 1. Lê os parâmetros 'filme' (o ID) e 'player' (qual serviço usar) da URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const filmeId = urlParams.get('filme');
+    const playerType = urlParams.get('player'); // Novo parâmetro 'player'
+    
+    const iframe = document.getElementById('ve-iframe');
+    let playerUrl = '';
 
-                // Convert sheet to JSON to filter blank rows
-                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
-                // Filter out blank rows (rows where all cells are empty, null, or undefined)
-                var filteredData = jsonData.filter(row => row.some(filledCell));
-
-                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
-                var headerRowIndex = filteredData.findIndex((row, index) =>
-                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
-                );
-                // Fallback
-                if (headerRowIndex === -1 || headerRowIndex > 25) {
-                  headerRowIndex = 0;
-                }
-
-                // Convert filtered JSON back to CSV
-                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
-                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
-                return csv;
-            } catch (e) {
-                console.error(e);
-                return "";
-            }
-        }
-        return gk_fileData[filename] || "";
-        }
-        </script>
-    <script>
-        // Lê o parâmetro 'filme' da URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const filmeId = urlParams.get('filme');
-        
-        // Define o URL do iframe com base no ID do filme
-        const iframe = document.getElementById('ve-iframe');
-        if (filmeId) {
-            iframe.src = `https://playerflixapi.com/filme/${filmeId}`;
+    if (filmeId) {
+        // 2. Decide qual URL base usar com base no parâmetro 'player'
+        if (playerType === 'mega') {
+            // Player 1: MegaEmbed
+            playerUrl = `https://megaembed.com/embed/${filmeId}`;
         } else {
-          // URL padrão se não houver ID
+            // Player Padrão (PlayerFlixAPI, ou se o parâmetro for 'flix' ou não existir)
+            playerUrl = `https://playerflixapi.com/filme/${filmeId}`;
         }
-    </script>
+
+        // 3. Define o src do iframe
+        iframe.src = playerUrl;
+    } else {
+      // Opcional: URL padrão se não houver ID do filme
+      console.error("ID do filme não encontrado na URL.");
+    }
+</script>
+
 </body>
 </html>
