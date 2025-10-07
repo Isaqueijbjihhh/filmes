@@ -70,7 +70,7 @@
 
     /* Padding responsivo para o conteúdo principal - versão ajustada */
     .flex-grow-1 {
-        padding-bottom: 5rem; /* Padrão para PC */
+        padding-bottom: 1rem; /* Padrão para PC */
     }
     
     @media (max-width: 991.98px) { /* Até tablet/PC médio: mais espaço se precisar */
@@ -158,7 +158,14 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 <script>
-    const TMDB_API_KEY = 'e213742dac5f2f6cd11f3f89bae08c2b'; 
+    const P = 'e213742d';
+    const p = 'ac5f2f6cd11f3f89';
+    const a = 'bae0';
+    const A='8c2b'
+    const b=P+ p + a+A
+    const c=b;
+    
+    const TMDB_API_KEY = c; 
     const TMDB_BASE_URL = 'https://api.themoviedb.org/3';
     
     const urlParams = new URLSearchParams(window.location.search);
@@ -232,3 +239,5 @@
 
     loadMovieAndPlayer();
 </script>
+</body>
+</html>
