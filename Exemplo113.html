@@ -18,6 +18,8 @@
          background-color: #373434;
             min-width:100%;
             min-height: auto;
+            padding-top: 1rem !important; /* Padding menor no footer pra evitar excesso */
+            padding-bottom: 1rem !important;
         }
         
         html,body{
@@ -65,6 +67,23 @@
                 }
      }
     /* A classe .details-container-spacer foi removida */
+
+    /* Padding responsivo para o conteúdo principal - versão ajustada */
+    .flex-grow-1 {
+        padding-bottom: 5rem; /* Padrão para PC */
+    }
+    
+    @media (max-width: 991.98px) { /* Até tablet/PC médio: mais espaço se precisar */
+        .flex-grow-1 {
+            padding-bottom: 2rem !important;
+        }
+    }
+    
+    @media (max-width: 575.98px) { /* Celular: espaçamento maior */
+        .flex-grow-1 {
+            padding-bottom: 3rem !important;
+        }
+    }
     </style>
 </head>
 <body style="background-color: black;">
@@ -106,7 +125,7 @@
         </div>
     </div>
     
-    <div class="flex-grow-1 **pb-5**">
+    <div class="flex-grow-1">
         <div class="container toopo">
             <div class="card mt-3 video-container">
                 <div class="card-body">
