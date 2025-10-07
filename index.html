@@ -41,12 +41,11 @@
             object-fit: contain;
             border-radius: 10px;
         }
- footer{
-         background-color: #373434;
+        footer{
+            background-color: #373434;
             min-width:100%;
             min-height: auto;
-            margin-top:auto;
-
+            /* REMOVIDO: margin-top:auto; */
         }
         
         html,body{
@@ -120,6 +119,10 @@
                 height: 180px;
             }
         }
+        /* CLASSE ADICIONADA PARA DAR ESPAÇO AO CONTEÚDO PRINCIPAL */
+        .main-content {
+            padding-bottom: 30px; /* Adiciona um espaço de 30px na parte inferior do conteúdo principal */
+        }
     </style>
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=search" />
@@ -162,8 +165,7 @@
                 </nav>
             </div>
         </div>
-        <div class="topo">
-            <div class="text-center mt-3">
+        <div class="topo **main-content**"> <div class="text-center mt-3">
                 <h2 style="color: yellow;">Filmes</h2>
                 <hr style="background-color: aliceblue; width: 10%; margin: 10px auto;">
             </div>
@@ -179,7 +181,6 @@
                         </a>
                     </div>
                 </div>
-                <!-- Filme 2 -->
                 <div class="card">
                     <div class="card-body">
                         <a href="Exemplo113.html?filme=tt3606752" class="text-decoration-none">
@@ -188,7 +189,6 @@
                         </a>
                     </div>
                 </div>
-                <!-- Filme 3 -->
                 <div class="card">
                     <div class="card-body">
                         <a href="Exemplo113.html?filme=tt4154756&player=mega" class="text-decoration-none">
@@ -197,7 +197,6 @@
                         </a>
                     </div>
                 </div>
-                <!-- Filme 4 -->
                 <div class="card">
                     <div class="card-body">
                         <a href="Exemplo113.html?filme=tt0848228" class="text-decoration-none">
@@ -206,7 +205,6 @@
                         </a>
                     </div>
                 </div>
-                <!-- Filme 5 -->
                 <div class="card">
                     <div class="card-body">
                         <a href="Exemplo113.html?filme=tt8115900" class="text-decoration-none">
@@ -368,7 +366,7 @@
                 <div class="card">
                     <div class="card-body">
                         <a href="Exemplo113.html?filme=tt0439572&player=mega" class="text-decoration-none">
-                            <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/itYONYDHpJqTuu8BCXAtHxgpglq.jpg"
+                            <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/itYONYDHpJqTuu8BCXAtHxgplq.jpg"
                                 class="img-fluid" alt="The Flash">
                         </a>
                     </div>
@@ -480,115 +478,116 @@
                     </div>
                 </div>
             </div>
+        
+
+            <div class="mt-3 text-center" id='meuelemento'>
+                <h2 style="color: yellow;">Lançamentos</h2>
+                <hr style="background-color: aliceblue; width: 15%;">
+            </div>
+
+            <div class="movie-grid">
+                <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt10676052" class="text-decoration-none">
+                            <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/hlWOAWRKSno6UxaE0IXDFVvmzTf.jpgg"
+                                class="img-fluid" alt="Quarteto Fantástico: Primeiros Passos">
+                        </a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt30017619" class="text-decoration-none">
+                            <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/b0UoBkMSi6hflLxNFIFbJgskorU.jpg"
+                                class="img-fluid" alt="Os Caras Malvados 2">
+                        </a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt11655566" class="text-decoration-none">
+                            <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/bTnWeKXYU3Fal6rc8Bm4lBcEHSV.jpg"
+                                class="img-fluid" alt="Lilo & Stitch">
+                        </a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt4900148" class="text-decoration-none">
+                            <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/2H8k54MWPQtsxWkQhR2HVfT34ty.jpg"
+                                class="img-fluid" alt="Elio">
+                        </a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt14513804" class="text-decoration-none">
+                            <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/yWOtVhuwJ6f5j9ELD2k3wKELEln.jpg"
+                                class="img-fluid" alt="Capitão América: Admirável Mundo Novo">
+                        </a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt26743210" class="text-decoration-none">
+                            <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/vdvEClt3J8sFWxyMo0Jm7JpouEo.jpg"
+                                class="img-fluid" alt="Como Treinar o Seu Dragão">
+                        </a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt5950044" class="text-decoration-none">
+                            <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/xeZ8oG6W60fEPf9yCjERUXiHRBF.jpg"
+                                class="img-fluid" alt="Superman">
+                        </a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt3566834" class="text-decoration-none">
+                            <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/4VtkIaj76TpQNfhDHXQDdT9uBN5.jpg"
+                                class="img-fluid" alt="Um Filme Minecraft">
+                        </a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt6208148" class="text-decoration-none">
+                            <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/mVCNoUc3d1XRAtxwhTdsTyhnnRO.jpg"
+                                class="img-fluid" alt="Branca de Neve">
+                        </a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt1674782" class="text-decoration-none">
+                            <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/gnuSSOVBVWlKL8dFEGKRoOiiKTS.jpg"
+                                class="img-fluid" alt="Karatê Kid: Lendas">
+                        </a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt30868610" class="text-decoration-none">
+                            <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/d2K7Zhw9yRjzoa4HBbrjt7aqlgT.jpg"
+                                class="img-fluid" alt="Chico Bento e a Goiabeira Maraviosa">
+                        </a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt31036941" class="text-decoration-none">
+                            <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/zuEC2i3I2P7QIcLoUJNBwqRYO4S.jpg"
+                                class="img-fluid" alt="Jurassic World: Recomeço">
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
-    <div class="mt-3 text-center" id='meuelemento'>
-        <h2 style="color: yellow;">Lançamentos</h2>
-        <hr style="background-color: aliceblue; width: 15%;">
-    </div>
-
-    <div class="movie-grid">
-        <div class="card">
-            <div class="card-body">
-                <a href="Exemplo113.html?filme=tt10676052" class="text-decoration-none">
-                    <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/hlWOAWRKSno6UxaE0IXDFVvmzTf.jpgg"
-                        class="img-fluid" alt="Quarteto Fantástico: Primeiros Passos">
-                </a>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-body">
-                <a href="Exemplo113.html?filme=tt30017619" class="text-decoration-none">
-                    <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/b0UoBkMSi6hflLxNFIFbJgskorU.jpg"
-                        class="img-fluid" alt="Os Caras Malvados 2">
-                </a>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-body">
-                <a href="Exemplo113.html?filme=tt11655566" class="text-decoration-none">
-                    <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/bTnWeKXYU3Fal6rc8Bm4lBcEHSV.jpg"
-                        class="img-fluid" alt="Lilo & Stitch">
-                </a>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-body">
-                <a href="Exemplo113.html?filme=tt4900148" class="text-decoration-none">
-                    <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/2H8k54MWPQtsxWkQhR2HVfT34ty.jpg"
-                        class="img-fluid" alt="Elio">
-                </a>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-body">
-                <a href="Exemplo113.html?filme=tt14513804" class="text-decoration-none">
-                    <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/yWOtVhuwJ6f5j9ELD2k3wKELEln.jpg"
-                        class="img-fluid" alt="Capitão América: Admirável Mundo Novo">
-                </a>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-body">
-                <a href="Exemplo113.html?filme=tt26743210" class="text-decoration-none">
-                    <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/vdvEClt3J8sFWxyMo0Jm7JpouEo.jpg"
-                        class="img-fluid" alt="Como Treinar o Seu Dragão">
-                </a>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-body">
-                <a href="Exemplo113.html?filme=tt5950044" class="text-decoration-none">
-                    <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/xeZ8oG6W60fEPf9yCjERUXiHRBF.jpg"
-                        class="img-fluid" alt="Superman">
-                </a>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-body">
-                <a href="Exemplo113.html?filme=tt3566834" class="text-decoration-none">
-                    <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/4VtkIaj76TpQNfhDHXQDdT9uBN5.jpg"
-                        class="img-fluid" alt="Um Filme Minecraft">
-                </a>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-body">
-                <a href="Exemplo113.html?filme=tt6208148" class="text-decoration-none">
-                    <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/mVCNoUc3d1XRAtxwhTdsTyhnnRO.jpg"
-                        class="img-fluid" alt="Branca de Neve">
-                </a>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-body">
-                <a href="Exemplo113.html?filme=tt1674782" class="text-decoration-none">
-                    <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/gnuSSOVBVWlKL8dFEGKRoOiiKTS.jpg"
-                        class="img-fluid" alt="Karatê Kid: Lendas">
-                </a>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="card-body">
-                <a href="Exemplo113.html?filme=tt30868610" class="text-decoration-none">
-                    <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/d2K7Zhw9yRjzoa4HBbrjt7aqlgT.jpg"
-                        class="img-fluid" alt="Chico Bento e a Goiabeira Maraviosa">
-                </a>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-body">
-                <a href="Exemplo113.html?filme=tt31036941" class="text-decoration-none">
-                    <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/zuEC2i3I2P7QIcLoUJNBwqRYO4S.jpg"
-                        class="img-fluid" alt="Jurassic World: Recomeço">
-                </a>
-            </div>
-        </div>
-    </div>
-
-    <footer class="bg-dark text-center text-white py-4 mt-5">
+    <footer class="bg-dark text-center text-white py-4 topo">
         <div class="container">
             <small class="text-secondary d-block mt-3">&copy; 2025 Todos os direitos reservados.</small>
         </div>
@@ -603,8 +602,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
         
-            // Opcional: mensagem se nada encontrado (aparece só uma vez)
-          
         function search() {
             let input = document.getElementById('searchbar').value;
             input = input.toLowerCase();
@@ -644,9 +641,6 @@
                 });
             }
         }
-        
-    </script>
-    <script>
         
     </script>
 </body>
