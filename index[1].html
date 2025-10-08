@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <title>Catálogo de Filmes</title>
+    <style>
+        .card:hover {
+            transform: scale(1.10);
+            transition: transform 0.5s;
+            box-shadow: 0 4px 8px rgb(0, 60, 255);
+        }
+
+        .movie-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .card {
+            width: 150px;
+            border: none;
+            margin: 0;
+            background-color: rgb(255, 255, 255);
+            border-radius: 10px;
+            margin-left:auto;
+            margin-right: auto;
+        }
+
+        .card-body {
+            padding: 0;
+            border-radius: 10px;
+        }
+
+        .card img {
+            width: 150px;
+            height: 225px;
+            /* Proporção 2:3 */
+            object-fit: contain;
+            border-radius: 10px;
+        }
+        footer{
+            background-color: #373434;
+            min-width:100%;
+            min-height: auto;
+            /* REMOVIDO: margin-top:auto; */
+        }
+        
+        html,body{
+          height: 100%;
+          margin:0;
+        }
+        body{
+          display: flex;
+          flex-direction: column;
+          min-height:100%;
+        }
+
+        .topo {
+            margin-top: 100px;
+        }
+
+        nav.link {
+            color: black;
+            transition: color 0.5s ease;
+        }
+
+        .nav-link:hover {
+            color: #d5d5d5;
+            background-color: transparent;
+            text-decoration: none;
+        }
+
+        .nav-link.active {
+            background-color: #d5d5d5;
+            color: #212529;
+            border-radius: 10px;
+        }
+
+        .nav-link.active:hover {
+            background-color: #888888;
+        }
+
+        .nav-tabs {
+            border-bottom: none;
+        }
+
+        .search {
+            display: flex;
+            align-items: center;
+            border: 1px solid;
+            background-color: rgb(0, 136, 255);
+            width: 400px;
+            margin: 2px auto;
+            border-radius: 10px;
+            padding: 5px 10px;
+        }
+        
+
+        #searchbar {
+            padding: 0;
+            border: none;
+            background-color: transparent;
+            width: 100%;
+            outline: none;
+        }
+
+        @media (max-width: 576px) {
+            .movie-grid {
+                padding: 10px;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            }
+
+            .card,
+            .card img {
+                width: 120px;
+                height: 180px;
+            }
+        }
+        /* CLASSE ADICIONADA PARA DAR ESPAÇO AO CONTEÚDO PRINCIPAL */
+        .main-content {
+            padding-bottom: 30px; /* Adiciona um espaço de 30px na parte inferior do conteúdo principal */
+        }
+    </style>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=search" />
+</head>
+<body style="background-color: rgb(0, 0, 0);">
+    <div class="container-fluid p-0">
+        <div class="row m-0">
+            <div class="col-12 p-0">
+                <nav class="navbar navbar-light bg-light navbar-expand-lg fixed-top">
+                     <h3 style="color:#ff0000;">Gratis</h3>
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav1"
+                        aria-controls="nav1" aria-expanded="false" aria-label="Alternar navegação">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="nav1">
+                        <ul class="navbar-nav">
+                            <li class="nav-item active">
+                                <a href="#" class="nav-link active">Início</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">Gêneros</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">Contato</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" id="linkDrop" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                    Mais
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="linkDrop">
+                                    <a href="#meuelemento" class="dropdown-item">Lançamentos</a>
+                                    <a href="#" class="dropdown-item">Populares</a>
+                                    <a href="#" class="dropdown-item">Favoritos</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <div class="topo **main-content**"> <div class="text-center mt-3">
+                <h2 style="color: yellow;">Filmes</h2>
+                <hr style="background-color: aliceblue; width: 10%; margin: 10px auto;">
+            </div>
+            <div class="search">
+                <input type="text" id="searchbar" name="searchbar" onkeyup="search()" placeholder="Busque o filme">
+            </div>
+
+            <div class="movie-grid">
+                <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt4154796&player=mega" class="text-decoration-none">
+                            <img src="vingadores.jpg" class="img-fluid" alt="Vingadores: Ultimato">
+                        </a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt3606752" class="text-decoration-none">
+                            <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/oEmdfjqQnAWe1t23WiiW0icFhGv.jpg"
+                                class="img-fluid" alt="Carros 3">
+                        </a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt4154756&player=mega" class="text-decoration-none">
+                            <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/d6jUbQj4E4R5MJlFYfdzANEZbkL.jpg"
+                                class="img-fluid" alt="Vingadores: Guerra Infinita">
+                        </a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt0848228" class="text-decoration-none">
+                            <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/u49fzmIJHkb1H4oGFTXtBGgaUS1.jpg"
+                                class="img-fluid" alt="Os Vingadores">
+                        </a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt8115900" class="text-decoration-none">
+                            <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/sYP7jrDDuqgfdq8HYc4kc8hs2k1.jpg"
+                                class="img-fluid" alt="Os Caras Malvados">
+                        </a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt9362722" class="text-decoration-none">
+                            <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/4CwKj1fw33BXYzxvrpM3GlAhK4L.jpg"
+                                class="img-fluid" alt="Homem-Aranha: Através do Aranhaverso">
+                        </a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt1409024&player=mega" class="text-decoration-none">
+                            <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/1zoknLsDO3M3aYLzfs3wIvXDTfC.jpg"
+                                class="img-fluid" alt="MIB: Homens de Preto III">
+                        </a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt9032400&player=mega" class="text-decoration-none">
+                            <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/mzezdUZEnpiUIlxpdyLO1R08Lqm.jpg"
+                                class="img-fluid" alt="Eternos">
+                        </a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt6718170" class="text-decoration-none">
+                            <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/ktU3MIeZtuEVRlMftgp0HMX2WR7.jpg"
+                                class="img-fluid" alt="Super Mario Bros. - O Filme">
+                        </a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt1630029" class="text-decoration-none">
+                            <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/mbYQLLluS651W89jO7MOZcLSCUw.jpg"
+                                class="img-fluid" alt="Avatar: O Caminho da Água">
+                        </a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt1825683" class="text-decoration-none">
+                            <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/ubXNpxL2ASSzY0f8Hxv08pOsV2L.jpg"
+                                class="img-fluid" alt="Pantera Negra">
+                        </a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt6791350" class="text-decoration-none">
+                            <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/4yycSPnchdNAZirGkmCYQwTd3cr.jpg"
+                                class="img-fluid" alt="Guardiões da Galáxia Vol. 3">
+                        </a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt7126948&player=mega" class="text-decoration-none">
+                            <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/qDA95ebiy3W3m8hTRB3xZNZVVBM.jpg"
+                                class="img-fluid" alt="Mulher-Maravilha 1984">
+                        </a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt1302011" class="text-decoration-none">
+                            <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/dSF0v3XPCzKb30zv3fLeuoJuTRv.jpg"
+                                class="img-fluid" alt="Kung Fu Panda 2">
+                        </a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt0441773" class="text-decoration-none">
+                            <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/schmAu5DYdn2YPoBUdqpxF98N1z.jpg"
+                                class="img-fluid" alt="Kung Fu Panda">
+                        </a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt1155076&player=mega" class="text-decoration-none">
+                            <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/uC57SSZAkkLBCuWVsEfbqYkRda5.jpg"
+                                class="img-fluid" alt="Karate Kid">
+                        </a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt3469046&player=mega" class="text-decoration-none">
+                            <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/75JdPoX4kQndXPF3X0t0r0SfkW1.jpg"
+                                class="img-fluid" alt="Meu Malvado Favorito 3">
+                        </a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt1690953&player=mega" class="text-decoration-none">
+                            <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/rYZzutMXxvirK9gK01iLo3Blaj3.jpg"
+                                class="img-fluid" alt="Meu Malvado Favorito 2">
+                        </a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt21692408" class="text-decoration-none">
+                            <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/aNK6MA5EApIo0UJE7ZWSYcZBJKy.jpg"
+                                class="img-fluid" alt="Kung Fu Panda 4">
+                        </a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt6467266" class="text-decoration-none">
+                            <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/bamgEHSfZRMtFHkicCe9jgRad5P.jpg"
+                                class="img-fluid" alt="Sing 2">
+                        </a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt0266915" class="text-decoration-none">
+                            <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/q8tqJRz8MQ5CS0gtlVB1CH12Wvv.jpg"
+                                class="img-fluid" alt="A Hora do Rush 2">
+                        </a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt0293564" class="text-decoration-none">
+                            <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/15tifAGNBdy4cLKDXKD2Iam8OkM.jpg"
+                                class="img-fluid" alt="A Hora do Rush 3">
+                        </a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt4588050&player=mega" class="text-decoration-none">
+                            <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/7mFT1RnjzI83o65kh6NRsg2P8V8.jpg"
+                                class="img-fluid" alt="carrosel:o Filme">
+                        </a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt0439572&player=mega" class="text-decoration-none">
+                            <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/itYONYDHpJqTuu8BCXAtHxgplq.jpg"
+                                class="img-fluid" alt="The Flash">
+                        </a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt1270797&player=mega" class="text-decoration-none">
+                            <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/sg4GBigP8c8136focg00wFotvmQ.jpg"
+                                class="img-fluid" alt="X-Men: Primeira Classe">
+                        </a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt0376994&player=mega" class="text-decoration-none">
+                            <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/w8D2AnlP7YutsiJ6WbpxWHAazSs.jpg"
+                                class="img-fluid" alt="X-Men: O Confronto Final">
+                        </a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt0418279&player=mega" class="text-decoration-none">
+                            <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/lkZ9gqCEjzX85lKR6Jjd1uGAXNp.jpg"
+                                class="img-fluid" alt="Transformers">
+                        </a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt1399103&player=mega" class="text-decoration-none">
+                            <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/2ClU228vymaJqDRr4ViXQXjwYse.jpg"
+                                class="img-fluid" alt="Transformers: O Lado Oculto da Lua">
+                        </a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt1211837&player=mega" class="text-decoration-none">
+                            <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/pb4clPWRJ5AKlSFu1HrrHdt5uAw.jpg"
+                                class="img-fluid" alt="Doutor Estranho">
+                        </a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt9419884&player=mega" class="text-decoration-none">
+                            <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/7pLIVfovuIf2KQOOvMsKx3Lanrg.jpg"
+                                class="img-fluid" alt="Doutor Estranho no Multiverso da Loucura">
+                        </a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt2975592&player=mega" class="text-decoration-none">
+                            <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/vh6pjeGH0GQupLepPCZn5PylcRg.jpg"
+                                class="img-fluid" alt="Batman v Superman: O Despertar da Justiça">
+                        </a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt2692250&player=mega" class="text-decoration-none">
+                            <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/Pca1hVNgPAUcp6zVHldlboh80R.jpg"
+                                class="img-fluid" alt="Uma Noite no Museu 3: O Segredo da Tumba">
+                        </a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt1843866&player=mega" class="text-decoration-none">
+                            <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/19wxfSXHhuJBRbbfUweCsfXFhpv.jpg"
+                                class="img-fluid" alt="Capitão América: O Soldado Invernal">
+                        </a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt3470600" class="text-decoration-none">
+                            <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/rkPf3AH4DPJC1T26T8CwAjBHHvc.jpg"
+                                class="img-fluid" alt="Sing: Quem Canta Seus Males Espanta">
+                        </a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt1587310" class="text-decoration-none">
+                            <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/dk6dGb014XAP7UOV0psttzcuh3E.jpg"
+                                class="img-fluid" alt="Malévola">
+                        </a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt4881806" class="text-decoration-none">
+                            <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/7xykpkKqfBfDgEKvS4jqpFF0S4K.jpg"
+                                class="img-fluid" alt="Jurassic World: Reino Ameaçado">
+                        </a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt0369610" class="text-decoration-none">
+                            <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/hMvpXTXokWPsyj9nr8TokmIvAfz.jpg"
+                                class="img-fluid" alt="Jurassic World - O Mundo dos Dinossauros">
+                        </a>
+                    </div>
+                    
+                </div>
+                  <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt2283362" class="text-decoration-none">
+                            <img src="https://image.tmdb.org/t/p/w500/uT1pHr90KqQGMucv7YgyPdxhMiC.jpg"
+                                class="img-fluid" alt="Jumanji-2017">
+                        </a>
+                    </div>
+                </div>
+            
+                 <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt9376612" class="text-decoration-none">
+                            <img src="https://image.tmdb.org/t/p/w500/ArrOBeio968bUuUOtEpKa1teIh4.jpg"
+                                class="img-fluid" alt="shang-chi">
+                        </a>
+                    </div>
+                </div>
+                            <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt2015381" class="text-decoration-none">
+                            <img src="https://image.tmdb.org/t/p/w500/xaY92XMToaSnBuvCui3LHzNGqZB.jpg"
+                                class="img-fluid" alt="Guardiões da galaxia">
+                        </a>
+                    </div>
+                </div>
+                
+                 <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt3501632" class="text-decoration-none">
+                            <img src="https://image.tmdb.org/t/p/w500/2K45Fp6koAVoeeYS6aMb9BeNt4F.jpg"
+                                class="img-fluid" alt="Thor-ragnarok">
+                        </a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt1231580" class="text-decoration-none">
+                            <img src="https://image.tmdb.org/t/p/w500/9L9Cgl6VUlHrnjcJCBj0S338Kuo.jpg"
+                                class="img-fluid" alt="alvin e os esquilos 2">
+                        </a>
+                    </div>
+                </div>
+            
+                 <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt5848272" class="text-decoration-none">
+                            <img src="https://image.tmdb.org/t/p/w500/uZCR7Vt3gTpj8hCNybFcNThFYTA.jpg"
+                                class="img-fluid" alt="Detona raph">
+                        </a>
+                    </div>
+                </div>
+                            
+            <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt0481499" class="text-decoration-none">
+                            <img src="https://image.tmdb.org/t/p/w500/7k9w3RgKYoJ9MCwdBY0ZBxC323L.jpg"
+                                class="img-fluid" alt="os croods">
+                        </a>
+                    </div>
+                </div>
+                            <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt1985949" class="text-decoration-none">
+                            <img src="https://image.tmdb.org/t/p/w500/bFXFfxCZe1pCYWzcGGxsxqc1bc7.jpg"
+                                class="img-fluid" alt="angry birds 1">
+                        </a>
+                    </div>
+                </div>
+            
+            <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt2267968" class="text-decoration-none">
+                            <img src="https://image.tmdb.org/t/p/w500/veg496jJXgEgdYV8avk3m6ZjOEg.jpg"
+                                class="img-fluid" alt="Kung fu panda 3">
+                        </a>
+                    </div>
+                </div>
+            
+            
+                 <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt2096673" class="text-decoration-none">
+                            <img src="https://image.tmdb.org/t/p/w500/62SAZfLfzhxJWUFJvfIPMw6QUpE.jpg"
+                                class="img-fluid" alt="Divertidamente">
+                        </a>
+                    </div>
+                </div>
+                 <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt0974015" class="text-decoration-none">
+                            <img src="https://image.tmdb.org/t/p/w500/vQIwxoGxW46Skq5ipu0pBFKZTKd.jpg"
+                                class="img-fluid" alt="Liga da justiça">
+                        </a>
+                    </div>
+                    </div>
+            
+                 <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt0870154&player=mega" class="text-decoration-none">
+                            <img src=""
+                                class="img-fluid" alt=" Jungle Cruise - 2021">
+                        </a>
+                    </div>
+                </div>
+              <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt3416828&player=mega" class="text-decoration-none">
+                            <img src=""
+                                class="img-fluid" alt="a era do gelo">
+                        </a>
+                    </div>
+                </div>
+            
+                 <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt1424310&player=mega" class="text-decoration-none">
+                            <img src=""
+                                class="img-fluid" alt="operaçao zodiaco">
+                        </a>
+                    </div>
+                </div>
+            
+            
+                
+                
+               <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt1615918&player=mega" class="text-decoration-none">
+                            <img src="https://image.tmdb.org/t/p/w500/1yk43x6M0PAq7tVsksOIcWi9k3Y.jpg"
+                                class="img-fluid" alt="alvin e o esquilos 3">
+                        </a>
+                    </div>
+                </div>
+            
+                 <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt2357291&player=mega" class="text-decoration-none">
+                            <img src="https://image.tmdb.org/t/p/w500/e0CKmNlKfWwc8LSgfyf4gYsTjjP.jpg"
+                                class="img-fluid" alt="rio 2">
+                        </a>
+                    </div>
+                </div>
+            
+     
+
+            
+                 <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt6811018&player=mega" class="text-decoration-none">
+                            <img src="https://image.tmdb.org/t/p/w500/bu0BurnKgnobJoCEXUsHKxvlXd4.jpg"
+                                class="img-fluid" alt="o menino que queria ser rei">
+                        </a>
+                    </div>
+                </div>
+            
+                 <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt4701182&player=mega" class="text-decoration-none">
+                            <img src="https://image.tmdb.org/t/p/w500/x9vAcoPsyFQ6m3Re5S9DQSbudyi.jpg"
+                                class="img-fluid" alt="Bububle">
+                        </a>
+                    </div>
+                
+            </div>
+                 <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt4633694" class="text-decoration-none">
+                            <img src="https://image.tmdb.org/t/p/w500/ybQSBSrINtjWsJQ6Ih8sva8HlEZ.jpg"
+                                class="img-fluid" alt="homem-aranha no aranhaverso 1">
+                        </a>
+                    </div>
+                </div>
+
+            <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt0775552" class="text-decoration-none">
+                            <img src=""
+                                class="img-fluid" alt="pequenos envasores">
+                        </a>
+                    </div>
+                </div>
+            
+
+            
+            <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt0952640&player=mega" class="text-decoration-none">
+                            <img src="https://image.tmdb.org/t/p/w500/o2WoeYJv9ISS9bw0kKD2cvmg9xN.jpg"
+                                class="img-fluid" alt="alvins e os esquilos">
+                        </a>
+                    </div>
+                </div>
+            
+            <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt4633694" class="text-decoration-none">
+                            <img src=""
+                                class="img-fluid" alt="homem-aranha no aranhaverso 1">
+                        </a>
+                    </div>
+                </div>
+            
+            <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt1477834&player=mega" class="text-decoration-none">
+                            <img src="https://image.tmdb.org/t/p/w500/wbo0CYG6SOFxFkoe9BiqvivLggN.jpg"
+                                class="img-fluid" alt="Aquaman">
+                        </a>
+                    </div>
+                </div>
+            
+            <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt0099088&player=mega" class="text-decoration-none">
+                            <img src="https://image.tmdb.org/t/p/w500/8KgDjwaoNvVDp5eET4VsGSwXnUO.jpg"
+                                class="img-fluid" alt="Devolta para o futuro III">
+                        </a>
+                    </div>
+                </div>
+            
+            <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt0088763&player=mega" class="text-decoration-none">
+                            <img src="https://image.tmdb.org/t/p/w500/jIq6VLvkl3APntb552IFhSq3VEg.jpg"
+                                class="img-fluid" alt="Devolta para o futuro II">
+                        </a>
+                    </div>
+                </div>
+            
+            <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt5034838&player=mega" class="text-decoration-none">
+                            <img src="https://image.tmdb.org/t/p/w500/teW53VSLdZMMSmkn5xBBowu3tEr.jpg"
+                                class="img-fluid" alt="homem-aranha no aranhaverso 1">
+                        </a>
+                    </div>
+                </div>
+            
+                        <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt1677720&player=mega" class="text-decoration-none">
+                            <img src="https://image.tmdb.org/t/p/w500/6rS5kiTCjej8FQFwZdqB3zuyEK8.jpg"
+                                class="img-fluid" alt="homem-aranha no aranhaverso 1">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+                
+        
+
+            <div class="mt-3 text-center" id='meuelemento'>
+                <h2 style="color: yellow;">Lançamentos</h2>
+                <hr style="background-color: aliceblue; width: 15%;">
+            </div>
+
+            <div class="movie-grid">
+                <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt10676052" class="text-decoration-none">
+                            <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/hlWOAWRKSno6UxaE0IXDFVvmzTf.jpgg"
+                                class="img-fluid" alt="Quarteto Fantástico: Primeiros Passos">
+                        </a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt30017619" class="text-decoration-none">
+                            <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/b0UoBkMSi6hflLxNFIFbJgskorU.jpg"
+                                class="img-fluid" alt="Os Caras Malvados 2">
+                        </a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt11655566" class="text-decoration-none">
+                            <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/bTnWeKXYU3Fal6rc8Bm4lBcEHSV.jpg"
+                                class="img-fluid" alt="Lilo & Stitch">
+                        </a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt4900148" class="text-decoration-none">
+                            <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/2H8k54MWPQtsxWkQhR2HVfT34ty.jpg"
+                                class="img-fluid" alt="Elio">
+                        </a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt14513804" class="text-decoration-none">
+                            <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/yWOtVhuwJ6f5j9ELD2k3wKELEln.jpg"
+                                class="img-fluid" alt="Capitão América: Admirável Mundo Novo">
+                        </a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt26743210" class="text-decoration-none">
+                            <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/vdvEClt3J8sFWxyMo0Jm7JpouEo.jpg"
+                                class="img-fluid" alt="Como Treinar o Seu Dragão">
+                        </a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt5950044" class="text-decoration-none">
+                            <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/xeZ8oG6W60fEPf9yCjERUXiHRBF.jpg"
+                                class="img-fluid" alt="Superman">
+                        </a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt3566834" class="text-decoration-none">
+                            <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/4VtkIaj76TpQNfhDHXQDdT9uBN5.jpg"
+                                class="img-fluid" alt="Um Filme Minecraft">
+                        </a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt6208148" class="text-decoration-none">
+                            <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/mVCNoUc3d1XRAtxwhTdsTyhnnRO.jpg"
+                                class="img-fluid" alt="Branca de Neve">
+                        </a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt1674782" class="text-decoration-none">
+                            <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/gnuSSOVBVWlKL8dFEGKRoOiiKTS.jpg"
+                                class="img-fluid" alt="Karatê Kid: Lendas">
+                        </a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt30868610" class="text-decoration-none">
+                            <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/d2K7Zhw9yRjzoa4HBbrjt7aqlgT.jpg"
+                                class="img-fluid" alt="Chico Bento e a Goiabeira Maraviosa">
+                        </a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <a href="Exemplo113.html?filme=tt31036941" class="text-decoration-none">
+                            <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/zuEC2i3I2P7QIcLoUJNBwqRYO4S.jpg"
+                                class="img-fluid" alt="Jurassic World: Recomeço">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-center text-white py-4 topo">
+        <div class="container">
+            <small class="text-secondary d-block mt-3">&copy; 2025 Todos os direitos reservados.</small>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        
+        function search() {
+            let input = document.getElementById('searchbar').value;
+            input = input.toLowerCase();
+            let cards = document.querySelectorAll('.card');
+            let grids = document.querySelectorAll('.movie-grid');
+            let found = false;
+
+            cards.forEach(function(card) {
+                let img = card.querySelector('img');
+                let alt = img ? img.alt.toLowerCase() : '';
+                if (input === '') {
+                    card.style.display = 'block';
+                } else if (alt.includes(input)) {
+                    card.style.display = 'block';
+                    found = true;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            // Mensagem se nada encontrado (aparece em ambas as seções, só uma vez por seção)
+            if (input !== '' && !found) {
+                grids.forEach(function(grid) {
+                    let message = grid.querySelector('#noResults');
+                    if (!message) {
+                        let noResults = document.createElement('p');
+                        noResults.id = 'noResults';
+                        noResults.className = 'text-center text-white mt-3';
+                        noResults.textContent = 'Nenhum filme encontrado.';
+                        grid.appendChild(noResults);
+                    }
+                });
+            } else {
+                let messages = document.querySelectorAll('#noResults');
+                messages.forEach(function(msg) {
+                    msg.remove();
+                });
+            }
+        }
+        
+    </script>
+</body>
+</html>
