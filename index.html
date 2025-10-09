@@ -158,53 +158,41 @@
     font-size: 1.2rem;
     text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
 }
-
+.carousel-indicators li:hover{
+        transform: scale(1.50);
+            transition: transform 0.5s;
+        
+}
 .carousel-indicators {
-    bottom: auto; /* Bolinhas mais baixas, no rodapé da imagem */
-    z-index: 15;
+    bottom: 0 !important; /* Cola no fundo da imagem, sem espaço */
+    padding-bottom: 5px; /* Pequeno espaçamento na borda inferior para não cortar */
+    z-index: 15; /* Garante que fiquem por cima de outros elementos */
 }
 
 .carousel-indicators li {
-    background-color: #ff0000;
+    background-color: #ff0000; /* Cor vermelha (ajuste se quiser) */
     border-radius: 50%;
     width: 15px;
     height: 15px;
     margin: 0 5px;
     opacity: 0.7;
-    transition: opacity 0.3s ease, background-color 0.3s ease, transform 0.3s ease;
+    transition: opacity 10.0s ease, background-color 0.3s ease, transform 0.3s ease;
+    
 }
 
 .carousel-indicators li.active {
     opacity: 1;
-    background-color: #ffff00;
+    background-color: #ffff00; /* Amarelo quando ativa */
     transform: scale(1.3);
 }
-
-
 .carousel-control-prev,
 .carousel-control-next {
     width: 5%; /* Reduz a área clicável dos controles para um visual mais limpo */
 }
-.carousel-indicators {
-    bottom: 20px; /* Posiciona dentro da imagem, não fora */
-    z-index: 15; /* Garante que fiquem por cima */
-}
 
-.carousel-indicators li {
-    background-color: #ff0000; /* Cor vermelha para visibilidade no fundo escuro */
-    border-radius: 50%; /* Mantém arredondado */
-    width: 15px; /* Tamanho maior */
-    height: 15px;
-    margin: 0 5px; /* Espaçamento entre elas */
-    opacity: 0.7; /* Semi-transparente quando inativo, mas visível */
-    transition: opacity 0.3s ease, background-color 0.3s ease, transform 0.3s ease; /* Animação suave */
-}
 
-.carousel-indicators li.active {
-    opacity: 1; /* Totalmente opaco quando ativa */
-    background-color: #ffff00; /* Amarelo vibrante para destaque */
-    transform: scale(1.3); /* Aumenta um pouco quando ativa */
-}
+
+
 /* Ajustes para dispositivos móveis */
 @media (max-width: 576px) {
     .carousel {
