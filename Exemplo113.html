@@ -1,44 +1,39 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <title>Assistir Filme</title>
     <style>
-         .video-container{
+        body {
+            background-color: #000;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.733);
+            backdrop-filter: blur(6px);
+            padding: 8px 15px;
+        }
+
+        .video-container {
+            position: relative;
             padding-bottom: 56.25%;
-            margin-top:20px;
+            margin-top: 20px;
             height: 0;
             overflow: hidden;
             background: #111;
             border-radius: 5px;
         }
-    footer{
-         background-color: #373434;
-            min-width:100%;
-            min-height: auto;
-            padding-top: 1rem !important; /* Padding menor no footer pra evitar excesso */
-            padding-bottom: 1rem !important;
-        }
-        
-        html,body{
-          height: 100%;
-          margin:0;
-        }
-        body{
-          display: flex;
-          flex-direction: column;
-          min-height:100%;
-        }
 
-        .toopo{
-          margin-top:100px; /* Espaço para a navbar fixa */
-        }
-        .topo{
-          margin-top: 12%;
-        }
-           .video-container iframe {
+        .video-container iframe {
             position: absolute;
             top: 0;
             left: 0;
@@ -46,198 +41,524 @@
             height: 100%;
             border: 0;
         }
-                #movie-details{
-                  background-color: #1a1a1b;
-                  border-radius: 10px;
-                  padding: 5px;
-                }
-                #movie-details h1{
-                  color:#ff0;
-                }
-                #movie-details p{
-                  color:#ffffff;
-                }
-                
-                
-     @media (max-width:575.98px)
-     {
-          #movie-details p{
-                  color:#ffffff;
-                  font-size: 14px;
-                }
-     }
-    /* A classe .details-container-spacer foi removida */
 
-    /* Padding responsivo para o conteúdo principal - versão ajustada */
-    .flex-grow-1 {
-        padding-bottom: 1rem; /* Padrão para PC */
-    }
-    
-    @media (max-width: 991.98px) { /* Até tablet/PC médio: mais espaço se precisar */
-        .flex-grow-1 {
-            padding-bottom: 2rem !important;
+        #movie-details {
+            background-color: #1a1a1b;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            color: #fff;
         }
-    }
-    
-    @media (max-width: 575.98px) { /* Celular: espaçamento maior */
-        .flex-grow-1 {
-            padding-bottom: 3rem !important;
+
+        #movie-details h1 {
+            color: #ff0;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
         }
-    }
+
+        #movie-details p {
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+
+        #movie-poster {
+            border-radius: 20px;
+            margin-right: 20px;
+            max-width: 200px;
+        }
+
+        .details-content {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .switch-player-btn {
+            margin-top: 10px;
+            background-color: #ff0;
+            color: #000;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .switch-player-btn:hover {
+            background-color: #e6e600;
+        }
+
+        .favorite-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .favorite-icon {
+            cursor: pointer;
+            color: #fff;
+            font-size: 24px;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .favorite-icon.favorited {
+            color: #ff0000;
+            font-variation-settings: 'FILL' 1;
+        }
+
+        .favorite-icon:hover {
+            color: #ff5555;
+            transform: scale(1.2);
+        }
+
+        .custom-modal-horizontal {
+            margin: 1rem auto;
+            max-width: 35vw;
+        }
+
+        .custom-modal-horizontal .modal-content {
+            max-height: auto;
+            overflow-y: auto;
+            border-radius: 8px;
+            margin-top: -3%;
+        }
+
+        @media (max-width: 576px) {
+            .custom-modal-horizontal {
+                max-width: 95vw;
+                margin-left: 18%;
+            }
+
+            .custom-modal-horizontal .modal-content {
+                max-height: 60vh;
+            }
+
+            #movie-details h1 {
+                font-size: 1.5rem;
+            }
+
+            #movie-details p {
+                font-size: 0.9rem;
+            }
+
+            #movie-poster {
+                margin: 0 auto 15px;
+                display: block;
+                max-width: 150px;
+            }
+
+            .details-content {
+                text-align: center;
+            }
+
+            .favorite-icon {
+                font-size: 20px;
+            }
+
+            .switch-player-btn {
+                font-size: 0.9rem;
+                padding: 6px 12px;
+            }
+        }
+
+        footer {
+            background-color: #373434;
+            width: 100%;
+            padding: 1rem 0;
+            text-align: center;
+            margin-top: auto;
+        }
+
+        .flex-grow-1 {
+            flex-grow: 1;
+            padding-bottom: 1rem;
+        }
+
+        .toopo {
+            margin-top: 100px;
+        }
+
+        .span:hover {
+            transform: scale(1.10);
+        }
+
+        button {
+            outline: none;
+        }
+
+        button:focus {
+            outline: none;
+        }
+
+        .btn:focus,
+        .btn.focus {
+            box-shadow: none !important;
+        }
+
+        .a:hover {
+            transform: scale(1.15);
+            transition: 0.50s ease;
+        }
     </style>
 </head>
-<body style="background-color: black;">
+
+<body>
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-12">
-                <nav class="navbar navbar-light bg-light navbar-expand-lg fixed-top">
-                    <a href="index.html" class="navbar-brand">
-                        <img src="imagem/logoloja.png" width="160" height="60" alt="Logo da Loja">
-                    </a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav1" aria-controls="nav1" aria-expanded="false" aria-label="Alternar navegação">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="nav1">
-                        <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <a href="index.html" class="nav-link">voltar</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">Item 02</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">Item 03</a>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" id="linkDrop" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Dropdown
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="linkDrop">
-                                    <a href="#" class="dropdown-item">Opção 01</a>
-                                    <a href="#" class="dropdown-item">Opção 02</a>
-                                    <a href="#" class="dropdown-item">Opção 03</a>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
+        <nav class="navbar navbar-light navbar-expand-lg fixed-top">
+            <a class="navbar-brand" href="#">
+                <h3 style="color: #ff0000; margin: 0;">Gratis</h3>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav1" aria-controls="nav1"
+                aria-expanded="false" aria-label="Alternar menu de navegação">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="nav1">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link" style="color: #4a4a4a;">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" style="color: #4a4a4a;">Contato</a>
+                    </li>
+                </ul>
             </div>
-        </div>
+        </nav>
     </div>
-    
+
     <div class="flex-grow-1">
         <div class="container toopo">
             <div class="card mt-3 video-container">
                 <div class="card-body">
-                    <iframe id="ve-iframe" 
-                            src="" 
-                            width="100%" 
-                            frameborder="0" 
-                            allowfullscreen 
-                            webkitallowfullscreen 
-                            mozallowfullscreen>
-                    </iframe>
+                    <iframe id="ve-iframe" src="" frameborder="0" allowfullscreen webkitallowfullscreen
+                        mozallowfullscreen></iframe>
+                </div>
+            </div>
+            <div class="favorite-container">
+                <span class="material-symbols-outlined favorite-icon" id="favorite-icon" onclick="toggleFavorite()"
+                    aria-label="Adicionar ou remover dos favoritos">favorite</span>
+                <button class="switch-player-btn" onclick="switchPlayer()">Trocar Player</button>
+                <span class="material-symbols-outlined a" style="color: #e6e600; cursor: pointer;" data-toggle="modal"
+                    data-target="#modalExemplo">
+                    info
+                </span>
+            </div>
+
+            <div class="container mt-3">
+                <div id="movie-details" class="card text-white">
+                    <div class="card-body d-flex flex-wrap">
+                        <img id="movie-poster" src="" alt="" class="img-fluid rounded mb-3" style="max-width: 200px; display: none;">
+                        <div class="details-content">
+                            <h1 id="movie-title" class="card-title">Buscando detalhes do filme...</h1>
+                            <p id="movie-year" class="card-text"><strong>Ano:</strong> Carregando...</p>
+                            <p id="movie-genres" class="card-text"><strong>Gêneros:</strong> Carregando...</p>
+                            <p id="movie-runtime" class="card-text"><strong>Duração:</strong> Carregando...</p>
+                            <p id="movie-rating" class="card-text"><strong>Nota:</strong> Carregando...</p>
+                            <p id="movie-overview" class="card-text"><strong>Sinopse:</strong> Carregando...</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
 
-        <div class="container topo"> 
-            <div id="movie-details">
-                <p style="color: white; text-align: center;">Buscando detalhes do filme...</p>
+    <!-- Modal -->
+    <div class="modal fade" id="modalExemplo" tabindex="-1" role="dialog" data-backdrop="false" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog custom-modal-horizontal" role="document">
+            <div class="modal-content">
+                <div class="modal-header py-2 px-3">
+                    <h6 class="modal-title mb-0" id="exampleModalLabel">Ajuda rápida</h6>
+                </div>
+                <div class="modal-body p-3" style="font-size: 0.85rem;">
+                    <p><strong>Trocar Player</strong> muda o servidor de vídeo, caso o atual não funcione bem.</p>
+                </div>
+                <div class="modal-footer py-2 px-3">
+                    <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal" style="padding: 1%;width:50px;">OK</button>
+                </div>
             </div>
         </div>
     </div>
-    <footer class=" bg-dark text-center py-4 ">
+
+    <footer>
         <div class="container">
-            <small class="text-secondary d-block mt-3">&copy; 2025 Todos os direitos reservados.</small>
+            <small class="text-secondary">&copy; 2025 Todos os direitos reservados.</small>
         </div>
     </footer>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        const TMDB_API_KEY = 'e213742dac5f2f6cd11f3f89bae08c2b';
+        const TMDB_BASE_URL = 'https://api.themoviedb.org/3';
+        const urlParams = new URLSearchParams(window.location.search);
+        const filmeId = urlParams.get('filme');
+        const playerType = urlParams.get('player');
+        const iframe = document.getElementById('ve-iframe');
+        const movieTitle = document.getElementById('movie-title');
+        const movieYear = document.getElementById('movie-year');
+        const movieGenres = document.getElementById('movie-genres');
+        const movieRuntime = document.getElementById('movie-runtime');
+        const movieRating = document.getElementById('movie-rating');
+        const movieOverview = document.getElementById('movie-overview');
+        const moviePoster = document.getElementById('movie-poster');
+        const favoriteIcon = document.getElementById('favorite-icon');
+        const switchPlayerButton = document.querySelector('.switch-player-btn');
 
-<script>
-    const P = 'e213742d';
-    const p = 'ac5f2f6cd11f3f89';
-    const a = 'bae0';
-    const A='8c2b'
-    const b=P+ p + a+A
-    const c=b;
-    
-    const TMDB_API_KEY = c; 
-    const TMDB_BASE_URL = 'https://api.themoviedb.org/3';
-    
-    const urlParams = new URLSearchParams(window.location.search);
-    const filmeId = urlParams.get('filme'); 
-    const playerType = urlParams.get('player'); 
-    
-    const iframe = document.getElementById('ve-iframe');
-    const detailsContainer = document.getElementById('movie-details');
+        // Função para criar URLs dos players
+        function createPlayerUrls(id) {
+            return {
+                playerflix: `https://playerflixapi.com/filme/${id}`,
+                mega: `https://megaembed.com/embed/${id}`,
+                ultra: `https://ultraembed.fun/filme/${id}`,
+                super: `https://superflixapi.asia/filme/${id}`
+            };
+        }
 
-    async function getTMDbIdFromIMDb(imdbId) {
-        try {
-            const response = await fetch(`${TMDB_BASE_URL}/find/${imdbId}?api_key=${TMDB_API_KEY}&language=pt-BR&external_source=imdb_id`);
-            
-            if (!response.ok) {
-                 console.error(`Busca FIND falhou com status: ${response.status}`);
-                 return null;
+        // Função para obter TMDb ID a partir do IMDb ID
+        async function getTMDbIdFromIMDb(imdbId) {
+            try {
+                const response = await fetch(`${TMDB_BASE_URL}/find/${imdbId}?api_key=${TMDB_API_KEY}&language=pt-BR&external_source=imdb_id`);
+                if (!response.ok) {
+                    console.error(`Busca FIND falhou com status: ${response.status}`);
+                    return null;
+                }
+                const data = await response.json();
+                return data.movie_results && data.movie_results.length > 0 ? data.movie_results[0].id : null;
+            } catch (error) {
+                console.error("Falha ao obter TMDb ID:", error);
+                return null;
+            }
+        }
+
+        // Função para verificar se a URL é segura
+        function isSafeUrl(url) {
+            const safeDomains = ['playerflixapi.com', 'megaembed.com', 'ultraembed.fun', 'superflixapi.asia'];
+            try {
+                const urlObj = new URL(url);
+                return safeDomains.includes(urlObj.hostname);
+            } catch (e) {
+                return false;
+            }
+        }
+
+        // Função para testar carregamento de um player
+        async function testPlayerLoad(url) {
+            const TEST_TIMEOUT_MS = 3000;
+            try {
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), TEST_TIMEOUT_MS);
+                const response = await fetch(url, { method: 'HEAD', signal: controller.signal });
+                clearTimeout(timeoutId);
+                return response.ok ? url : null;
+            } catch (error) {
+                console.warn(`Falha ao testar ${url}:`, error.message);
+                return null;
+            }
+        }
+
+        // Função para obter player do cache
+        function getCachedPlayer(filmeId) {
+            return localStorage.getItem(`player_${filmeId}`);
+        }
+
+        // Função para salvar player no cache
+        function setCachedPlayer(filmeId, url) {
+            localStorage.setItem(`player_${filmeId}`, url);
+        }
+
+        // Função para selecionar o melhor player
+        async function selectBestPlayer(id) {
+            const cachedPlayer = getCachedPlayer(id);
+            if (cachedPlayer && isSafeUrl(cachedPlayer)) {
+                console.log('Usando player do cache:', cachedPlayer);
+                return cachedPlayer;
             }
 
-            const data = await response.json();
-            
-            if (data.movie_results && data.movie_results.length > 0) {
-                return data.movie_results[0].id;
+            const urls = createPlayerUrls(id);
+            const userAgent = navigator.userAgent;
+            const playerKeys = Object.keys(urls).filter(key => !urls[key].includes('megaembed') || !/mobile/i.test(userAgent));
+            const GLOBAL_TIMEOUT_MS = 5000;
+
+            const playerPromises = playerKeys.map(key =>
+                Promise.race([
+                    testPlayerLoad(urls[key]),
+                    new Promise((_, reject) => setTimeout(() => reject(new Error('Timeout')), GLOBAL_TIMEOUT_MS))
+                ]).catch(e => {
+                    console.warn(`Player ${key} falhou:`, e.message);
+                    return null;
+                })
+            );
+
+            const results = await Promise.all(playerPromises);
+            const fastestUrl = results.find(url => url !== null);
+
+            if (fastestUrl) {
+                setCachedPlayer(id, fastestUrl);
+                return fastestUrl;
             }
-            return null;
-        } catch (error) {
-            console.error("Falha ao obter TMDb ID:", error);
-            return null;
-        }
-    }
-    
-    async function loadMovieAndPlayer() {
-        if (!filmeId) {
-            detailsContainer.innerHTML = '<h1>Erro</h1><p>ID do filme não fornecido na URL.</p>';
-            return;
+
+            setCachedPlayer(id, urls.playerflix);
+            return urls.playerflix;
         }
 
-        let tmdbId = null;
-        if (filmeId.startsWith('tt')) {
-            tmdbId = await getTMDbIdFromIMDb(filmeId);
-        }
+        // Função para trocar player
+        function switchPlayer() {
+            const urls = createPlayerUrls(filmeId);
+            const playerKeys = Object.keys(urls);
+            const currentUrl = iframe.src;
+            const currentIndex = playerKeys.findIndex(key => urls[key] === currentUrl);
+            const nextIndex = (currentIndex + 1) % playerKeys.length;
+            const newUrl = urls[playerKeys[nextIndex]];
 
-        if (tmdbId) {
-            const detailsResponse = await fetch(`${TMDB_BASE_URL}/movie/${tmdbId}?api_key=${TMDB_API_KEY}&language=pt-BR`);
-            
-            if (detailsResponse.ok) {
-                const movieDetails = await detailsResponse.json();
-                
-                const titulo = movieDetails.title || "Título Indisponível";
-                const sinopse = movieDetails.overview || "Sinopse não fornecida.";
-                
-                detailsContainer.innerHTML = `
-                    <h1>${titulo}</h1>
-                    <p>${sinopse}</p>
-                `;
+            if (isSafeUrl(newUrl)) {
+                iframe.src = newUrl;
+                setCachedPlayer(filmeId, newUrl);
+                console.log('Trocado para player:', newUrl);
             } else {
-                 detailsContainer.innerHTML = '<h1>Detalhes Não Encontrados</h1><p>Não foi possível carregar o nome e a sinopse.</p>';
+                console.error('URL do player não é segura:', newUrl);
             }
-        } else {
-             detailsContainer.innerHTML = '<h1>Detalhes Não Encontrados</h1><p>Não foi possível reconhecer o filme. Verifique se o ID é do IMDb (tt...)</p>';
         }
 
-        let playerUrl = '';
-        if (playerType === 'mega') {
-            playerUrl = `https://megaembed.com/embed/${filmeId}`;
-        } else {
-            playerUrl = `https://playerflixapi.com/filme/${filmeId}`;
+        // Função para favoritar/desfavoritar
+        function toggleFavorite() {
+            if (!filmeId) {
+                console.warn('Nenhum filmeId fornecido para favoritar.');
+                return;
+            }
+            let favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+            if (favorites.includes(filmeId)) {
+                favorites = favorites.filter(id => id !== filmeId);
+                favoriteIcon.classList.remove('favorited');
+            } else {
+                favorites.push(filmeId);
+                favoriteIcon.classList.add('favorited');
+            }
+            localStorage.setItem('favorites', JSON.stringify(favorites));
         }
 
-        iframe.src = playerUrl;
-    }
+        // Função para verificar status de favorito
+        function checkFavoriteStatus() {
+            let favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+            if (favorites.includes(filmeId)) {
+                favoriteIcon.classList.add('favorited');
+            } else {
+                favoriteIcon.classList.remove('favorited');
+            }
+        }
 
-    loadMovieAndPlayer();
-</script>
+        // Função principal para carregar filme e player
+        async function loadMovieAndPlayer() {
+            if (!filmeId) {
+                movieTitle.textContent = 'Erro';
+                movieYear.innerHTML = '<strong>Ano:</strong> ID do filme não fornecido na URL.';
+                movieGenres.innerHTML = '<strong>Gêneros:</strong> N/A';
+                movieRuntime.innerHTML = '<strong>Duração:</strong> N/A';
+                movieRating.innerHTML = '<strong>Nota:</strong> N/A';
+                movieOverview.innerHTML = '<strong>Sinopse:</strong> ID do filme não fornecido na URL.';
+                moviePoster.style.display = 'none';
+                checkFavoriteStatus();
+                return;
+            }
+
+            // Carregar detalhes do filme
+            let tmdbId = null;
+            if (filmeId.startsWith('tt')) {
+                tmdbId = await getTMDbIdFromIMDb(filmeId);
+            }
+
+            if (tmdbId) {
+                try {
+                    const response = await fetch(`${TMDB_BASE_URL}/movie/${tmdbId}?api_key=${TMDB_API_KEY}&language=pt-BR`);
+                    if (response.ok) {
+                        const movieDetails = await response.json();
+                        const titulo = movieDetails.title || "Título Indisponível";
+                        const sinopse = movieDetails.overview || "Sinopse não fornecida.";
+                        const ano = movieDetails.release_date ? movieDetails.release_date.split('-')[0] : "N/A";
+                        const generos = movieDetails.genres && movieDetails.genres.length > 0 
+                            ? movieDetails.genres.map(g => g.name).join(', ') 
+                            : "N/A";
+                        const duracao = movieDetails.runtime ? `${movieDetails.runtime} min` : "N/A";
+                        const nota = movieDetails.vote_average ? movieDetails.vote_average.toFixed(1) : "N/A";
+                        const posterPath = movieDetails.poster_path ? `https://image.tmdb.org/t/p/w300${movieDetails.poster_path}` : '';
+
+                        movieTitle.textContent = titulo;
+                        movieYear.innerHTML = `<strong>Ano:</strong> ${ano}`;
+                        movieGenres.innerHTML = `<strong>Gêneros:</strong> ${generos}`;
+                        movieRuntime.innerHTML = `<strong>Duração:</strong> ${duracao}`;
+                        movieRating.innerHTML = `<strong>Nota:</strong> ${nota}/10`;
+                        movieOverview.innerHTML = `<strong>Sinopse:</strong> ${sinopse}`;
+                        
+                        if (posterPath) {
+                            moviePoster.src = posterPath;
+                            moviePoster.alt = `Pôster do filme ${titulo}`;
+                            moviePoster.style.display = 'block';
+                        } else {
+                            moviePoster.style.display = 'none';
+                        }
+                    } else {
+                        movieTitle.textContent = 'Detalhes Não Encontrados';
+                        movieYear.innerHTML = '<strong>Ano:</strong> N/A';
+                        movieGenres.innerHTML = '<strong>Gêneros:</strong> N/A';
+                        movieRuntime.innerHTML = '<strong>Duração:</strong> N/A';
+                        movieRating.innerHTML = '<strong>Nota:</strong> N/A';
+                        movieOverview.innerHTML = '<strong>Sinopse:</strong> Não foi possível carregar os detalhes do filme.';
+                        moviePoster.style.display = 'none';
+                    }
+                } catch (error) {
+                    console.error('Erro ao buscar detalhes do filme:', error);
+                    movieTitle.textContent = 'Erro';
+                    movieYear.innerHTML = '<strong>Ano:</strong> N/A';
+                    movieGenres.innerHTML = '<strong>Gêneros:</strong> N/A';
+                    movieRuntime.innerHTML = '<strong>Duração:</strong> N/A';
+                    movieRating.innerHTML = '<strong>Nota:</strong> N/A';
+                    movieOverview.innerHTML = '<strong>Sinopse:</strong> Ocorreu um erro ao carregar os detalhes do filme.';
+                    moviePoster.style.display = 'none';
+                }
+            } else {
+                movieTitle.textContent = 'Detalhes Não Encontrados';
+                movieYear.innerHTML = '<strong>Ano:</strong> N/A';
+                movieGenres.innerHTML = '<strong>Gêneros:</strong> N/A';
+                movieRuntime.innerHTML = '<strong>Duração:</strong> N/A';
+                movieRating.innerHTML = '<strong>Nota:</strong> N/A';
+                movieOverview.innerHTML = '<strong>Sinopse:</strong> Não foi possível reconhecer o filme. Verifique se o ID é do IMDb (tt...).';
+                moviePoster.style.display = 'none';
+            }
+
+            // Selecionar player
+            const urls = createPlayerUrls(filmeId);
+            let playerUrl = '';
+            if (playerType && urls[playerType] && isSafeUrl(urls[playerType])) {
+                playerUrl = urls[playerType];
+                console.log(`Usando player predefinido: ${playerType}`);
+                setCachedPlayer(filmeId, playerUrl);
+            } else {
+                playerUrl = await selectBestPlayer(filmeId);
+            }
+
+            iframe.src = playerUrl;
+
+            // Monitorar erros no iframe
+            iframe.onerror = () => {
+                console.error('Erro no player:', playerUrl);
+                switchPlayer();
+            };
+
+            // Monitorar carregamento
+            setTimeout(() => {
+                if (iframe.src && !switchPlayerButton.style.display) {
+                    console.warn('Timeout de carregamento do player. Usando fallback.');
+                    switchPlayer();
+                }
+            }, 10000);
+
+            checkFavoriteStatus();
+        }
+
+        document.addEventListener('DOMContentLoaded', loadMovieAndPlayer);
+    </script>
 </body>
+
 </html>

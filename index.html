@@ -13,7 +13,7 @@
         .card:hover {
             transform: scale(1.10);
             box-shadow: 0 4px 8px rgb(0, 60, 255);
-            transition: transform 0.3s ease, opacity 0.3s ease;
+            transition: transform 0.3s ease, opacity 0.3s ease, filter 0.3s ease;
             opacity: 0.9;
         }
 
@@ -45,6 +45,31 @@
             height: 225px;
             object-fit: contain;
             border-radius: 10px;
+            transition: filter 0.3s ease; /* Transição para o efeito de blur */
+        }
+
+        .card:hover img {
+            filter: blur(0.90px); /* Efeito de blur no hover */
+        }
+
+        .card-title-overlay {
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+            background-color: rgba(8, 0, 255, 0.7);
+            padding: 5px;
+            border-radius: 0 0 10px 10px;
+            opacity: 0;
+            transition: opacity 0.5s ease; /* Transição suave para o título */
+        }
+
+        .card:hover .card-title-overlay {
+            opacity: 1; /* Mostra o título no hover */
         }
 
         footer {
@@ -69,91 +94,94 @@
             margin-top: 100px;
         }
 
-    /* ... (outras regras CSS mantidas como no código original) ... */
-
-    .navbar {
-        align-items: center;
-        padding: 8px 15px;
-        background-color: rgba(255, 255, 255, 0.595);
-        backdrop-filter: blur(6px);
-        display: flex;
-        flex-wrap: wrap;
-    }
-
-    .navbar .form-inline {
-        flex-grow: 1;
-        justify-content: center;
-        margin: 0; /* Removido margin vertical para evitar deslocamento */
-        display: flex;
-        align-items: center;
-    }
-
-    .navbar .search {
-        border: 1px solid #007bff;
-        background-color: #000000;
-        border-radius: 25px;
-        padding: 5px 10px; /* Reduzido o padding para alinhar melhor */
-        transition: box-shadow 0.3s ease;
-        width: 100%;
-        max-width: 400px;
-        height: 34px; /* Reduzido a altura para melhor proporção */
-        display: flex;
-        align-items: center;
-        position: relative;
-    }
-
-    #searchbar {
-        padding: 0;
-        border: none;
-        background-color: transparent;
-        width: 100%;
-        outline: none;
-        color: aliceblue;
-        font-size: 14px; /* Ajustado para melhor proporção */
-        line-height: 1; /* Garante alinhamento vertical */
-    }
-
-    .navbar #searchbar::placeholder {
-        color: rgba(255,255,255,0.7);
-    }
-
-    @media (max-width: 991px) {
         .navbar {
-            justify-content: space-between;
+            align-items: center;
+            padding: 8px 15px;
             background-color: rgba(255, 255, 255, 0.595);
             backdrop-filter: blur(6px);
+            display: flex;
+            flex-wrap: wrap;
         }
 
         .navbar .form-inline {
             flex-grow: 1;
-            margin: 0; /* Removido margin para evitar deslocamento */
-            padding: 5px 0; /* Ajustado padding para controle fino */
+            justify-content: center;
+            margin: 0;
+            display: flex;
+            align-items: center;
         }
 
         .navbar .search {
-            max-width: 300px; /* Reduzido para telas menores */
-            height: 32px; /* Ajustado para proporção */
-        }
-    }
-
-    @media (max-width: 576px) {
-        .navbar .form-inline {
-            margin: 0; /* Removido margin para evitar deslocamento */
-            padding: 3px 0; /* Ajustado padding para telas pequenas */
-        }
-
-        .navbar .search {
-            max-width: 200px;
-            height: 30px; /* Reduzido para telas pequenas */
-            padding: 4px 8px; /* Ajustado padding */
+            border: 1px solid #007bff;
+            background-color: #000000;
+            border-radius: 25px;
+            padding: 5px 10px;
+            transition: box-shadow 0.3s ease;
+            width: 100%;
+            max-width: 400px;
+            height: 34px;
+            display: flex;
+            align-items: center;
+            position: relative;
         }
 
         #searchbar {
-            font-size: 13px; /* Ajustado para telas pequenas */
+            padding: 0;
+            border: none;
+            background-color: transparent;
+            width: 100%;
+            outline: none !important;
+            color: aliceblue;
+            font-size: 14px;
+            line-height: 1;
+        
         }
-    }
 
+        .navbar #searchbar::placeholder {
+            color: rgba(255,255,255,0.7);
+        }
 
+        @media (max-width: 991px) {
+            .navbar {
+                justify-content: space-between;
+                background-color: rgba(255, 255, 255, 0.595);
+                backdrop-filter: blur(6px);
+            }
+
+            .navbar .form-inline {
+                flex-grow: 1;
+                margin: 0;
+                padding: 5px 0;
+            }
+
+            .navbar .search {
+                max-width: 300px;
+                height: 32px;
+                
+            }
+        }
+
+        @media (max-width: 576px) {
+            .navbar .form-inline {
+                margin: 0;
+                padding: 3px 0;
+            }
+
+            .navbar .search {
+                max-width: 200px;
+                height: 30px;
+                padding: 4px 8px;
+            }
+
+            #searchbar {
+                font-size: 13px;
+            }
+
+            .card-title-overlay {
+                font-size: 12px; /* Ajuste do tamanho da fonte para telas menores */
+                padding: 3px;
+            }
+        }
 
         .carousel {
             max-width: auto;
@@ -163,7 +191,7 @@
         }
 
         .carousel-item img {
-            height: 400px;
+            height: 450px;
             object-fit: cover;
             border-radius: 15px;
             width: 100%;
@@ -267,7 +295,6 @@
                         <h3 style="color:#ff0000; margin: 0;">Gratis</h3>
                     </a>
                     <form class="form-inline">
-                        
                         <div class="search position-relative">
                             <span class="material-symbols-outlined position-absolute" style="margin-left: 10px; top: 50%; transform: translateY(-50%); color: white; z-index: 1;">search</span>
                             <input type="text" id="searchbar" name="searchbar" onkeyup="search()" placeholder="Busque o filme" class="form-control pl-5">
@@ -311,7 +338,7 @@
                             <hr style="background-color: aliceblue; width: 10%; margin: 10px auto;">
                         </div>
                         <div class="movie-grid movies-grid">
-                            <div class="card">
+                                <div class="card">
                                 <div class="card-body">
                                     <a href="Exemplo113.html?filme=tt4154796&player=mega" class="text-decoration-none">
                                         <img src="https://image.tmdb.org/t/p/w300/ulzhLuWrPK07P1YkdWQLZnQh1JL.jpg" loading="lazy" class="img-fluid" alt="Pôster do filme Vingadores: Ultimato">
@@ -488,7 +515,7 @@
                             </div>
                             <div class="card">
                                 <div class="card-body">
-                                    <a href="Exemplo113.html?filme=tt2975592&player=mega" class="text-decoration-none">
+                                    <a href="Exemplo113.html?filme=tt2975590&player=mega" class="text-decoration-none">
                                         <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/vh6pjeGH0GQupLepPCZn5PylcRg.jpg" class="img-fluid" alt="Batman v Superman: O Despertar da Justiça">
                                     </a>
                                 </div>
@@ -496,7 +523,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <a href="Exemplo113.html?filme=tt2692250&player=mega" class="text-decoration-none">
-                                        <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/Pca1hVNgPAUcp6zVHldlboh80R.jpg" class="img-fluid" alt="Uma Noite no Museu 3: O Segredo da Tumba">
+                                        <img src="https://image.tmdb.org/t/p/w300/cfrWSuTUhu6nEhzU4ysnlaLm0fQ.jpg" class="img-fluid" alt="Uma Noite no Museu 3: O Segredo da Tumba">
                                     </a>
                                 </div>
                             </div>
@@ -510,7 +537,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <a href="Exemplo113.html?filme=tt1587310" class="text-decoration-none">
-                                        <img src="https://image.tmdb.org/t/p/w300/bDG3yei6AJlEAK3A5wN7RwFXQ7V.jpg" class="img-fluid" alt="Malévola">
+                                        <img src="https://image.tmdb.org/t/p/w300/dk6dGb014XAP7UOV0psttzcuh3E.jpg" class="img-fluid" alt="Malévola">
                                     </a>
                                 </div>
                             </div>
@@ -525,6 +552,13 @@
                                 <div class="card-body">
                                     <a href="Exemplo113.html?filme=tt0369610" class="text-decoration-none">
                                         <img src="https://media.themoviedb.org/t/p/w220_and_h330_face/hMvpXTXokWPsyj9nr8TokmIvAfz.jpg" class="img-fluid" alt="Jurassic World: O Mundo dos Dinossauros">
+                                    </a>
+                                </div>
+                            </div>
+                                   <div class="card">
+                                <div class="card-body">
+                                    <a href="Exemplo113.html?filme=tt0448115&player=super" class="text-decoration-none">
+                                        <img src="https://image.tmdb.org/t/p/w300/rwkriXzzP9FoiIF5nTdxBsUcds4.jpg" loading="lazy" class="img-fluid" alt="Shazam!">
                                     </a>
                                 </div>
                             </div>
@@ -566,7 +600,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <a href="Exemplo113.html?filme=tt1424310&player=mega" class="text-decoration-none">
-                                        <img src="https://image.tmdb.org/t/p/w300/zlC6cN9dYIT6FjQVx026s9pFLIu.jpg" class="img-fluid" alt="Operação Zodíaco">
+                                        <img src="https://image.tmdb.org/t/p/w300/tobYv4VtrbTO6BQ8a1MU88ndUuT.jpg" class="img-fluid" alt="Operação Zodíaco">
                                     </a>
                                 </div>
                             </div>
@@ -584,6 +618,86 @@
                                     </a>
                                 </div>
                             </div>
+                             <div class="card">
+    <div class="card-body">
+        <a href="Exemplo113.html?filme=tt32621553&player=super" class="text-decoration-none">
+            <img src="https://image.tmdb.org/t/p/w300/3A0xtSvnwa7BikiWr55AQLPWMvs.jpg" class="img-fluid" alt="Dora e a Busca pelo Sol Dourado">
+        </a>
+    </div>
+</div>
+                             <div class="card">
+    <div class="card-body">
+        <a href="Exemplo113.html?filme=tt1300854" class="text-decoration-none">
+            <img src="https://image.tmdb.org/t/p/w300/C7MZwRTjvEy7gkWcLJeBGZFE1w.jpg" class="img-fluid" alt="Homem de Ferro 3">
+        </a>
+    </div>
+</div>
+<div class="card">
+    <div class="card-body">
+        <a href="Exemplo113.html?filme=tt1104001" class="text-decoration-none">
+            <img src="https://image.tmdb.org/t/p/w300/wlHzvzXE9AvMgrVsKHg2PweC3aC.jpg" class="img-fluid" alt="Tron: O Legado">
+        </a>
+    </div>
+</div>
+    
+    
+     <div class="card">
+    <div class="card-body">
+        <a href="Exemplo113.html?filme=tt10600398" class="text-decoration-none">
+            <img src="https://image.tmdb.org/t/p/w300/qz8V4opEXdcY7qeU5djTdrfmuhX.jpg" class="img-fluid" alt="Pequenos Grandes Heróis">
+        </a>
+    </div>
+</div>
+     <div class="card">
+    <div class="card-body">
+        <a href="Exemplo113.html?filme=tt1854564" class="text-decoration-none">
+            <img src="https://image.tmdb.org/t/p/w300/izLw6mf5coAJZV6n9wDfbYWXXHW.jpg" class="img-fluid" alt="Percy Jackson e o Mar de Monstros">
+        </a>
+    </div>
+</div>
+     <div class="card">
+    <div class="card-body">
+        <a href="Exemplo113.html?filme=tt12801262" class="text-decoration-none">
+            <img src="https://image.tmdb.org/t/p/w300/m6Ockf2oYhxXoBIBaRLDwCOE410.jpg" class="img-fluid" alt="Luca">
+        </a>
+    </div>
+</div>
+     <div class="card">
+    <div class="card-body">
+        <a href="Exemplo113.html?filme=tt3554046" class="text-decoration-none">
+            <img src="https://image.tmdb.org/t/p/w300/itN4fscYy1hIQy5lSdv44SddsoG.jpg" class="img-fluid" alt="Space Jam: Um Novo Legado">
+        </a>
+    </div>
+</div>
+     <div class="card">
+    <div class="card-body">
+        <a href="Exemplo113.html?filme=tt4123432" class="text-decoration-none">
+            <img src="https://image.tmdb.org/t/p/w300/jIyTuxNB3lHxmx8YlmOf3X5A7l7.jpg" class="img-fluid" alt="Animais Fantásticos: Os Segredos de Dumbledore">
+        </a>
+    </div>
+</div>
+     <div class="card">
+    <div class="card-body">
+        <a href="Exemplo113.html?filme=tt6443346" class="text-decoration-none">
+            <img src="https://image.tmdb.org/t/p/w300/ZTzxi5aKXua2eIlmaMbxxcoW7v.jpg" class="img-fluid" alt="Adão Negro">
+        </a>
+    </div>
+</div>
+     <div class="card">
+    <div class="card-body">
+        <a href="Exemplo113.html?filme=tt32621553&player=ultra" class="text-decoration-none">
+            <img src="https://image.tmdb.org/t/p/w300/3A0xtSvnwa7BikiWr55AQLPWMvs.jpg" class="img-fluid" alt="Homem-Aranha no Aranhaverso">
+        </a>
+    </div>
+</div>
+     
+ <div class="card">
+    <div class="card-body">
+        <a href="Exemplo113.html?filme=tt1677720" class="text-decoration-none">
+            <img src="https://image.tmdb.org/t/p/w300/6rS5kiTCjej8FQFwZdqB3zuyEK8.jpg" class="img-fluid" alt="Jogador N° 1">
+        </a>
+    </div>
+</div>
                             <div class="card">
                                 <div class="card-body">
                                     <a href="Exemplo113.html?filme=tt0952640&player=mega" class="text-decoration-none">
@@ -661,6 +775,13 @@
                                     </a>
                                 </div>
                             </div>
+                             <div class="card">
+    <div class="card-body">
+        <a href="Exemplo113.html?filme=tt2948356" class="text-decoration-none">
+            <img src="https://image.tmdb.org/t/p/w300/ncqVGCX9P3EKQfsOXiB3XxQ0Dip.jpg" class="img-fluid" alt="Zootopia: Essa Cidade é o Bicho">
+        </a>
+    </div>
+</div>
                             <div class="card">
                                 <div class="card-body">
                                     <a href="Exemplo113.html?filme=tt1690953&player=mega" class="text-decoration-none">
@@ -1026,6 +1147,17 @@
             searchBar.addEventListener('keyup', () => {
                 clearTimeout(timeout);
                 timeout = setTimeout(search, 300);
+            });
+
+            // Adicionar títulos dinamicamente aos cards
+            const cards = document.querySelectorAll('.movie-grid .card');
+            cards.forEach(card => {
+                const img = card.querySelector('img');
+                const title = img.alt;
+                const titleOverlay = document.createElement('div');
+                titleOverlay.className = 'card-title-overlay';
+                titleOverlay.textContent = title;
+                card.querySelector('.card-body a').appendChild(titleOverlay);
             });
         });
 
