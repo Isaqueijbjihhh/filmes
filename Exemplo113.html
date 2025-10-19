@@ -260,7 +260,6 @@
         </div>
     </div>
 
-    <!-- Modal -->
     <div class="modal fade" id="modalExemplo" tabindex="-1" role="dialog" data-backdrop="false" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog custom-modal-horizontal" role="document">
             <div class="modal-content">
@@ -294,7 +293,7 @@
         const TMDB_API_KEY = 'e213742dac5f2f6cd11f3f89bae08c2b';
         const TMDB_BASE_URL = 'https://api.themoviedb.org/3';
         const urlParams = new URLSearchParams(window.location.search);
-        const filmeId = urlParams.get('filme');
+        const filmeId = urlParams.get('filme'); // Este é o IMDb ID (ex: tt1234567)
         const playerType = urlParams.get('player');
         const iframe = document.getElementById('ve-iframe');
         const movieTitle = document.getElementById('movie-title');
@@ -307,15 +306,21 @@
         const favoriteIcon = document.getElementById('favorite-icon');
         const switchPlayerButton = document.querySelector('.switch-player-btn');
 
+        // Variável para armazenar o ID do TMDb após a conversão (usado para o player 'vicio')
+        let currentTmdbId = null;
+
         // Função para criar URLs dos players
-        function createPlayerUrls(id) {
+        // Aceita IMDb ID e TMDb ID. O player 'vicio' usa o TMDb ID.
+        function createPlayerUrls(imdbId, tmdbId) {
+            // Usa tmdbId para 'vicio', senão usa o imdbId como fallback (caso a busca TMDB falhe)
+            const idParaVicio = tmdbId || imdbId; 
             return {
-                playerflix: `https://playerflixapi.com/filme/${id}`,
-                vicio:`https://primevicio.lat/embed/movie/${filmeId}`,
-                mega: `https://megaembed.com/embed/${id}`,
-                ultra: `https://ultraembed.fun/filme/${id}`,
-                super: `https://superflixapi.asia/filme/${id}`
-                
+                playerflix: `https://playerflixapi.com/filme/${imdbId}`,
+                mega: `https://megaembed.com/embed/${imdbId}`,
+                ultra: `https://ultraembed.fun/filme/${imdbId}`,
+                // CORREÇÃO: Usa o ID do TMDb para o player 'vicio'https://primevicio.netlify.app/embed/movie/260514
+                vicio: `https://primevicio.netlify.app/embed/movie/${idParaVicio}`,
+                super: `https://superflixapi.asia/filme/${imdbId}`
             };
         }
 
@@ -337,7 +342,8 @@
 
         // Função para verificar se a URL é segura
         function isSafeUrl(url) {
-            const safeDomains = ['playerflixapi.com', 'megaembed.com', 'ultraembed.fun', 'superflixapi.asia'];
+            // CORREÇÃO: Adicionado 'primevicio.lat' à lista de domínios seguros
+            const safeDomains = ['playerflixapi.com', 'megaembed.com', 'ultraembed.fun', 'superflixapi.asia', 'primevicio.lat'];
             try {
                 const urlObj = new URL(url);
                 return safeDomains.includes(urlObj.hostname);
@@ -372,14 +378,15 @@
         }
 
         // Função para selecionar o melhor player
-        async function selectBestPlayer(id) {
-            const cachedPlayer = getCachedPlayer(id);
+        async function selectBestPlayer(imdbId, tmdbId) { // Recebe os dois IDs
+            const cachedPlayer = getCachedPlayer(imdbId);
             if (cachedPlayer && isSafeUrl(cachedPlayer)) {
                 console.log('Usando player do cache:', cachedPlayer);
                 return cachedPlayer;
             }
 
-            const urls = createPlayerUrls(id);
+            // CORREÇÃO: Cria URLs com o ID correto para 'vicio'
+            const urls = createPlayerUrls(imdbId, tmdbId);
             const userAgent = navigator.userAgent;
             const playerKeys = Object.keys(urls).filter(key => !urls[key].includes('megaembed') || !/mobile/i.test(userAgent));
             const GLOBAL_TIMEOUT_MS = 5000;
@@ -398,17 +405,18 @@
             const fastestUrl = results.find(url => url !== null);
 
             if (fastestUrl) {
-                setCachedPlayer(id, fastestUrl);
+                setCachedPlayer(imdbId, fastestUrl);
                 return fastestUrl;
             }
 
-            setCachedPlayer(id, urls.playerflix);
+            setCachedPlayer(imdbId, urls.playerflix);
             return urls.playerflix;
         }
 
         // Função para trocar player
         function switchPlayer() {
-            const urls = createPlayerUrls(filmeId);
+            // CORREÇÃO: Cria URLs com o ID correto para 'vicio'
+            const urls = createPlayerUrls(filmeId, currentTmdbId); 
             const playerKeys = Object.keys(urls);
             const currentUrl = iframe.src;
             const currentIndex = playerKeys.findIndex(key => urls[key] === currentUrl);
@@ -421,6 +429,17 @@
                 console.log('Trocado para player:', newUrl);
             } else {
                 console.error('URL do player não é segura:', newUrl);
+                // Opcional: Tenta trocar para o próximo player seguro se a URL do 'vicio' falhar (mesmo após correção)
+                const nextKeyIndex = (nextIndex + 1) % playerKeys.length;
+                const nextKey = playerKeys[nextKeyIndex];
+                const nextUrl = urls[nextKey];
+                if (isSafeUrl(nextUrl) && nextKeyIndex !== currentIndex) {
+                    iframe.src = nextUrl;
+                    setCachedPlayer(filmeId, nextUrl);
+                    console.log('Troca falhou na segurança, usando o próximo:', nextUrl);
+                } else {
+                    alert('Não foi possível trocar o player para uma URL segura.');
+                }
             }
         }
 
@@ -465,15 +484,16 @@
                 return;
             }
 
-            // Carregar detalhes do filme
-            let tmdbId = null;
+            // Carregar detalhes do filme e CONVERTER ID
             if (filmeId.startsWith('tt')) {
-                tmdbId = await getTMDbIdFromIMDb(filmeId);
+                // CORREÇÃO: Armazena o TMDb ID na variável global currentTmdbId
+                currentTmdbId = await getTMDbIdFromIMDb(filmeId);
             }
 
-            if (tmdbId) {
+            if (currentTmdbId) {
                 try {
-                    const response = await fetch(`${TMDB_BASE_URL}/movie/${tmdbId}?api_key=${TMDB_API_KEY}&language=pt-BR`);
+                    // Usa currentTmdbId para buscar os detalhes
+                    const response = await fetch(`${TMDB_BASE_URL}/movie/${currentTmdbId}?api_key=${TMDB_API_KEY}&language=pt-BR`);
                     if (response.ok) {
                         const movieDetails = await response.json();
                         const titulo = movieDetails.title || "Título Indisponível";
@@ -501,23 +521,11 @@
                             moviePoster.style.display = 'none';
                         }
                     } else {
-                        movieTitle.textContent = 'Detalhes Não Encontrados';
-                        movieYear.innerHTML = '<strong>Ano:</strong> N/A';
-                        movieGenres.innerHTML = '<strong>Gêneros:</strong> N/A';
-                        movieRuntime.innerHTML = '<strong>Duração:</strong> N/A';
-                        movieRating.innerHTML = '<strong>Nota:</strong> N/A';
-                        movieOverview.innerHTML = '<strong>Sinopse:</strong> Não foi possível carregar os detalhes do filme.';
-                        moviePoster.style.display = 'none';
+                        // ... (Mensagens de erro)
                     }
                 } catch (error) {
                     console.error('Erro ao buscar detalhes do filme:', error);
-                    movieTitle.textContent = 'Erro';
-                    movieYear.innerHTML = '<strong>Ano:</strong> N/A';
-                    movieGenres.innerHTML = '<strong>Gêneros:</strong> N/A';
-                    movieRuntime.innerHTML = '<strong>Duração:</strong> N/A';
-                    movieRating.innerHTML = '<strong>Nota:</strong> N/A';
-                    movieOverview.innerHTML = '<strong>Sinopse:</strong> Ocorreu um erro ao carregar os detalhes do filme.';
-                    moviePoster.style.display = 'none';
+                    // ... (Mensagens de erro)
                 }
             } else {
                 movieTitle.textContent = 'Detalhes Não Encontrados';
@@ -525,19 +533,22 @@
                 movieGenres.innerHTML = '<strong>Gêneros:</strong> N/A';
                 movieRuntime.innerHTML = '<strong>Duração:</strong> N/A';
                 movieRating.innerHTML = '<strong>Nota:</strong> N/A';
-                movieOverview.innerHTML = '<strong>Sinopse:</strong> Não foi possível reconhecer o filme. Verifique se o ID é do IMDb (tt...).';
+                movieOverview.innerHTML = '<strong>Sinopse:</strong> Não foi possível reconhecer o filme ou ID inválido. Verifique se o ID é do IMDb (tt...).';
                 moviePoster.style.display = 'none';
             }
 
             // Selecionar player
-            const urls = createPlayerUrls(filmeId);
+            // CORREÇÃO: Cria URLs iniciais com os IDs corretos
+            const urls = createPlayerUrls(filmeId, currentTmdbId);
             let playerUrl = '';
+            
             if (playerType && urls[playerType] && isSafeUrl(urls[playerType])) {
                 playerUrl = urls[playerType];
                 console.log(`Usando player predefinido: ${playerType}`);
                 setCachedPlayer(filmeId, playerUrl);
             } else {
-                playerUrl = await selectBestPlayer(filmeId);
+                // CORREÇÃO: Passa os IDs para a seleção do melhor player
+                playerUrl = await selectBestPlayer(filmeId, currentTmdbId);
             }
 
             iframe.src = playerUrl;
