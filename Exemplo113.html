@@ -343,7 +343,7 @@
         // Função para verificar se a URL é segura
         function isSafeUrl(url) {
             // CORREÇÃO: Adicionado 'primevicio.lat' à lista de domínios seguros
-            const safeDomains = ['playerflixapi.com', 'megaembed.com', 'ultraembed.fun', 'superflixapi.asia', 'primevicio.lat'];
+            const safeDomains = ['playerflixapi.com', 'megaembed.com', 'ultraembed.fun', 'superflixapi.asia', 'primevicio.netlify.app'];
             try {
                 const urlObj = new URL(url);
                 return safeDomains.includes(urlObj.hostname);
